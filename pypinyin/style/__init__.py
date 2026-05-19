@@ -49,14 +49,6 @@ def register(style, func=None):
         _registry[style] = func
         return
 
-    def decorator(func):
-        _registry[style] = func
-
-        @wraps(func)
-        def wrapper(pinyin, **kwargs):
-            return func(pinyin, **kwargs)
-
-        return wrapper
     return decorator
 
 

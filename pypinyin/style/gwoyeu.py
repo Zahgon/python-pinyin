@@ -56,20 +56,7 @@ TONE_REPLACE = (
 
 
 class GwoyeuConverter(object):
-    def _pre_convert(self, pinyin):
-        # 用数字表示声调
-        pinyin = replace_symbol_to_number(pinyin)
-        # 将声调数字移动到最后
-        return RE_TONE3.sub(r'\1\3\2', pinyin)
 
-    def to_gwoyeu(self, pinyin, **kwargs):
-        pinyin = self._pre_convert(pinyin)
-        for find_re, replace in GWOYEU_REPLACE:
-            pinyin = find_re.sub(replace, pinyin)
-        for find_re, replace in TONE_REPLACE:
-            if find_re.search(pinyin):
-                return find_re.sub(replace, pinyin)
-        return pinyin
 
 
 converter = GwoyeuConverter()

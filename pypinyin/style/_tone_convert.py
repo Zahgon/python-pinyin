@@ -443,9 +443,6 @@ def tone2_to_tone(tone2):
     d = phonetic_symbol.phonetic_symbol_reverse
     string = tone2.replace('ü', 'v').replace('5', '').replace('0', '')
 
-    def _replace(m):
-        s = m.group(0)
-        return d.get(s) or s
 
     return regex.sub(_replace, string).replace('v', 'ü')
 

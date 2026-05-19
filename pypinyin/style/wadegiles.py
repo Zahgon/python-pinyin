@@ -524,36 +524,10 @@ _except_table = [
 _except_table.sort(key=lambda x: len(x[0]), reverse=True)
 
 
-def to_wade_glides(pinyin, **kwargs):
-    pinyin = replace_symbol_to_no_symbol(pinyin).replace('v', 'ü')
-
-    whole_converted = _convert_whole(pinyin, _except_table)
-    if whole_converted != pinyin:
-        return _fixed_result(whole_converted)
-    whole_converted = _convert_whole(pinyin, _convert_table)
-    if whole_converted != pinyin:
-        return _fixed_result(whole_converted)
-
-    initials = get_initials(pinyin, strict=False)
-    tones = pinyin[len(initials):]
-
-    initials = _convert_whole(initials, _initial_table)
-    tones = _convert_whole(tones, _tone_table)
-
-    return _fixed_result('{}{}'.format(initials, tones))
 
 
-def _fixed_result(pinyin):
-    return pinyin.replace('ü', 'v')
 
 
-def _convert_whole(chars, table):
-    for pair in table:
-        f, r = pair
-        if f == chars:
-            return r
-
-    return chars
 
 
 register(Style.WADEGILES, func=to_wade_glides)

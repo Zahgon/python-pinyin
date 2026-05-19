@@ -53,23 +53,8 @@ CYRILLIC_TABLE = dict(zip(
 
 
 class CyrillicfoConverter(object):
-    def to_cyrillic(self, pinyin, **kwargs):
-        pinyin = self._pre_convert(pinyin)
-        # 查表替换成注音
-        for find_re, replace in CYRILLIC_REPLACE:
-            pinyin = find_re.sub(replace, pinyin)
-        pinyin = ''.join(CYRILLIC_TABLE.get(x, x) for x in pinyin)
-        return pinyin
 
-    def to_cyrillic_first(self, pinyin, **kwargs):
-        pinyin = self.to_cyrillic(pinyin, **kwargs)
-        return pinyin[0]
 
-    def _pre_convert(self, pinyin):
-        # 用数字表示声调
-        pinyin = replace_symbol_to_number(pinyin)
-        # 将声调数字移动到最后
-        return RE_TONE3.sub(r'\1\3\2', pinyin)
 
 
 converter = CyrillicfoConverter()

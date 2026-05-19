@@ -70,22 +70,7 @@ BRAILLE_MAINLAND_TABLE = dict(zip(
 
 
 class BrailleMainlandConverter(object):
-    def to_braille_mainland_tone(self, pinyin, **kwargs):
-        # 用数字表示声调
-        pinyin = replace_symbol_to_number(pinyin)
-        # 将声调数字移动到最后
-        pinyin = RE_TONE3.sub(r'\1\3\2', pinyin)
-        for find_re, replace in BRAILLE_MAINLAND_REPLACE:
-            pinyin = find_re.sub(replace, pinyin)
-        pinyin = ''.join(BRAILLE_MAINLAND_TABLE.get(x, x) for x in pinyin)
-        return pinyin
 
-    def to_braille_mainland(self, pinyin, **kwargs):
-        pinyin = replace_symbol_to_no_symbol(pinyin)
-        for find_re, replace in BRAILLE_MAINLAND_REPLACE:
-            pinyin = find_re.sub(replace, pinyin)
-        pinyin = ''.join(BRAILLE_MAINLAND_TABLE.get(x, x) for x in pinyin)
-        return pinyin
 
 
 converter = BrailleMainlandConverter()

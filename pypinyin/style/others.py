@@ -16,10 +16,6 @@ class OthersConverter(object):
         pinyin = replace_symbol_to_no_symbol(pinyin)
         return pinyin
 
-    def to_first_letter(self, pinyin, **kwargs):
-        # 用数字表示声调
-        pinyin = self.to_normal(pinyin)
-        return pinyin[0]
 
 
 converter = OthersConverter()

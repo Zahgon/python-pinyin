@@ -8,8 +8,6 @@ from pypinyin.style._tone_convert import tone2_to_tone
 
 
 # 用于向后兼容，TODO: 废弃
-def _replace_tone2_style_dict_to_default(string):
-    return tone2_to_tone(string)
 
 
 def _remove_dup_items(lst, remove_empty=False):
